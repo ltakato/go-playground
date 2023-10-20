@@ -19,6 +19,23 @@ func main() {
 	// getting infered type
 	fmt.Println("The type of variable age is", reflect.TypeOf(age))
 	fmt.Println("The type of variable version is", reflect.TypeOf(version))
+
+	fmt.Println("Start program, choose an option...")
+	fmt.Println("1- start monitoring")
+	fmt.Println("2- show logs")
+	fmt.Println("0- exit program")
+
+	var command int
+
+	// with memory allocating using scanf
+	// fmt.Scanf("%d", &command)
+
+	// scan ignores if I type a char/string and assign 0 as default (because command is int)
+	fmt.Scan(&command)
+
+	fmt.Println("Chosen command is:", command)
+	fmt.Println("Address of my variable command: ", &command)
+	fmt.Println("The type of chosen command is", reflect.TypeOf(command))
 }
 
 func messageOutput(s string) string {
