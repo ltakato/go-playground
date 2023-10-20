@@ -3,13 +3,12 @@ package main
 import "fmt"
 
 func main() {
-	// Initialise and set a string s
-	// to 'Hello World'
-	s := "Hello World"
+	var name string = "Takatittos"
+	var age int = 28
+	var version float32 = 1.21
 
-	// Write out the string to the console
-	// Return the string for our later step.
-	fmt.Println(messageOutput(s))
+	fmt.Println("Hello, mr.", name, "your age is", age)
+	fmt.Println("This program is in version", version)
 }
 
 func messageOutput(s string) string {
