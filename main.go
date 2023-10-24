@@ -36,6 +36,16 @@ func main() {
 	fmt.Println("Chosen command is:", command)
 	fmt.Println("Address of my variable command: ", &command)
 	fmt.Println("The type of chosen command is", reflect.TypeOf(command))
+
+	if command == 1 {
+		fmt.Println("Monitoring...")
+	} else if command == 2 {
+		fmt.Println("Showing logs...")
+	} else if command == 0 {
+		fmt.Println("Exiting program...")
+	} else {
+		fmt.Println("Command not recognized")
+	}
 }
 
 func messageOutput(s string) string {
