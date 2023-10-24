@@ -7,8 +7,13 @@ import (
 )
 
 func main() {
-	showIntroduction()
-	showMenu()
+	_, age := returnNameAndAge()
+	// fmt.Println("I'm", name, "and I'm", age, "years")
+	// we can do like this to ignore first return value
+	fmt.Println("I'm", age, "years")
+
+	// showIntroduction()
+	// showMenu()
 	command := readCommand()
 
 	// with if, else, else if
@@ -25,7 +30,7 @@ func main() {
 	// with switch case
 	switch command {
 	case 1:
-		fmt.Println("Monitoring...")
+		initMonitoring()
 	case 2:
 		fmt.Println("Showing logs...")
 	case 0:
@@ -39,6 +44,12 @@ func main() {
 
 func messageOutput(s string) string {
 	return s
+}
+
+func returnNameAndAge() (string, int) {
+	name := "Takatittos"
+	age := 28
+	return name, age
 }
 
 func showIntroduction() {
@@ -78,4 +89,10 @@ func showMenu() {
 	fmt.Println("1- start monitoring")
 	fmt.Println("2- show logs")
 	fmt.Println("0- exit program")
+}
+
+func initMonitoring() {
+	fmt.Println("Monitoring...")
+	// site := "https://www.alura.com.br"
+	// resp, err := http.Get(site)
 }
