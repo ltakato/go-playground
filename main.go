@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	"os"
 	"reflect"
 )
@@ -12,8 +13,8 @@ func main() {
 	// we can do like this to ignore first return value
 	fmt.Println("I'm", age, "years")
 
-	// showIntroduction()
-	// showMenu()
+	showIntroduction()
+	showMenu()
 	command := readCommand()
 
 	// with if, else, else if
@@ -93,6 +94,8 @@ func showMenu() {
 
 func initMonitoring() {
 	fmt.Println("Monitoring...")
-	// site := "https://www.alura.com.br"
-	// resp, err := http.Get(site)
+	site := "https://www.alura.com.br"
+	// we're ignoring second value (error)
+	resp, _ := http.Get(site)
+	fmt.Println(resp)
 }
