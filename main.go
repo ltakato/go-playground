@@ -14,32 +14,35 @@ func main() {
 	fmt.Println("I'm", age, "years")
 
 	showIntroduction()
-	showMenu()
-	command := readCommand()
 
-	// with if, else, else if
-	// if command == 1 {
-	// 	fmt.Println("Monitoring...")
-	// } else if command == 2 {
-	// 	fmt.Println("Showing logs...")
-	// } else if command == 0 {
-	// 	fmt.Println("Exiting program...")
-	// } else {
-	// 	fmt.Println("Command not recognized")
-	// }
+	for {
+		showMenu()
+		command := readCommand()
 
-	// with switch case
-	switch command {
-	case 1:
-		initMonitoring()
-	case 2:
-		fmt.Println("Showing logs...")
-	case 0:
-		fmt.Println("Exiting program...")
-		os.Exit(0)
-	default:
-		fmt.Println("Command not recognized")
-		os.Exit(-1)
+		// with if, else, else if
+		// if command == 1 {
+		// 	fmt.Println("Monitoring...")
+		// } else if command == 2 {
+		// 	fmt.Println("Showing logs...")
+		// } else if command == 0 {
+		// 	fmt.Println("Exiting program...")
+		// } else {
+		// 	fmt.Println("Command not recognized")
+		// }
+
+		// with switch case
+		switch command {
+		case 1:
+			initMonitoring()
+		case 2:
+			fmt.Println("Showing logs...")
+		case 0:
+			fmt.Println("Exiting program...")
+			os.Exit(0)
+		default:
+			fmt.Println("Command not recognized")
+			os.Exit(-1)
+		}
 	}
 }
 
@@ -94,8 +97,16 @@ func showMenu() {
 
 func initMonitoring() {
 	fmt.Println("Monitoring...")
-	site := "https://www.alura.com.br"
+	// site := "https://www.alura.com.br"
+	site := "https://random-status-code.herokuapp.com/"
 	// we're ignoring second value (error)
 	resp, _ := http.Get(site)
-	fmt.Println(resp)
+
+	statusCode := resp.StatusCode
+
+	if statusCode == 200 {
+		fmt.Println("Site:", site, "was loaded successfully!")
+	} else {
+		fmt.Println("Site:", site, "has problems. Status code:", statusCode)
+	}
 }
