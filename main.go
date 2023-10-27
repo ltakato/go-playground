@@ -97,11 +97,17 @@ func showMenu() {
 
 func initMonitoring() {
 	fmt.Println("Monitoring...")
-	// site := "https://www.alura.com.br"
-	site := "https://random-status-code.herokuapp.com/"
-	// we're ignoring second value (error)
-	resp, _ := http.Get(site)
 
+	var sites [4]string
+
+	sites[0] = "https://random-status-code.herokuapp.com/"
+	sites[1] = "https://www.alura.com.br"
+	sites[2] = "https://www.caelum.com.br"
+
+	// site := "https://random-status-code.heroku.app.com/"
+	site := "https://www.caelum.com.br/"
+
+	resp, _ := http.Get(site)
 	statusCode := resp.StatusCode
 
 	if statusCode == 200 {
@@ -109,4 +115,9 @@ func initMonitoring() {
 	} else {
 		fmt.Println("Site:", site, "has problems. Status code:", statusCode)
 	}
+}
+
+func showNames() {
+	names := []string{"Anya", "Yor", "Loid"}
+	fmt.Println(names)
 }
