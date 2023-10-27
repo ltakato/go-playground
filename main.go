@@ -5,7 +5,11 @@ import (
 	"net/http"
 	"os"
 	"reflect"
+	"time"
 )
+
+const monitoringTimes = 5
+const monitoringDelay = 5
 
 func main() {
 	// showNames()
@@ -117,18 +121,27 @@ func initMonitoring() {
 	// 	site := sites[i]
 	//}
 
-	// modern go iteration for for
-	for i, site := range sites {
-		resp, _ := http.Get(site)
-		statusCode := resp.StatusCode
-
-		fmt.Println("Site", i, "-", site)
-
-		if statusCode == 200 {
-			fmt.Println("Site:", site, "was loaded successfully!")
-		} else {
-			fmt.Println("Site:", site, "has problems. Status code:", statusCode)
+	for i := 0; i < monitoringTimes; i++ {
+		// iterate each item (like for each)
+		for i, site := range sites {
+			testSite(site, i)
 		}
+		time.Sleep(monitoringDelay * time.Second)
+	}
+
+	fmt.Println("")
+}
+
+func testSite(site string, index int) {
+	resp, _ := http.Get(site)
+	statusCode := resp.StatusCode
+
+	fmt.Println("Testing site", index, ":", site)
+
+	if statusCode == 200 {
+		fmt.Println("Site:", site, "was loaded successfully!")
+	} else {
+		fmt.Println("Site:", site, "has problems. Status code:", statusCode)
 	}
 }
 
