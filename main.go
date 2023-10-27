@@ -8,17 +8,17 @@ import (
 )
 
 func main() {
-	showNames()
+	// showNames()
 
 	_, age := returnNameAndAge()
 	// fmt.Println("I'm", name, "and I'm", age, "years")
 	// we can do like this to ignore first return value
 	fmt.Println("I'm", age, "years")
 
-	// showIntroduction()
+	showIntroduction()
 
 	for {
-		// showMenu()
+		showMenu()
 		command := readCommand()
 
 		// with if, else, else if
@@ -100,22 +100,35 @@ func showMenu() {
 func initMonitoring() {
 	fmt.Println("Monitoring...")
 
-	var sites [4]string
+	// array
+	// var sites [4]string
 
-	sites[0] = "https://random-status-code.herokuapp.com/"
-	sites[1] = "https://www.alura.com.br"
-	sites[2] = "https://www.caelum.com.br"
+	// sites[0] = "https://random-status-code.herokuapp.com/"
+	// sites[1] = "https://www.alura.com.br"
+	// sites[2] = "https://www.caelum.com.br"
 
-	// site := "https://random-status-code.heroku.app.com/"
-	site := "https://www.caelum.com.br/"
+	// slice
+	sites := []string{"https://random-status-code.herokuapp.com/", "https://www.alura.com.br", "https://www.caelum.com.br"}
 
-	resp, _ := http.Get(site)
-	statusCode := resp.StatusCode
+	fmt.Println(sites)
 
-	if statusCode == 200 {
-		fmt.Println("Site:", site, "was loaded successfully!")
-	} else {
-		fmt.Println("Site:", site, "has problems. Status code:", statusCode)
+	// classical for looping
+	// for i := 0; i < len(sites); i++ {
+	// 	site := sites[i]
+	//}
+
+	// modern go iteration for for
+	for i, site := range sites {
+		resp, _ := http.Get(site)
+		statusCode := resp.StatusCode
+
+		fmt.Println("Site", i, "-", site)
+
+		if statusCode == 200 {
+			fmt.Println("Site:", site, "was loaded successfully!")
+		} else {
+			fmt.Println("Site:", site, "has problems. Status code:", statusCode)
+		}
 	}
 }
 
