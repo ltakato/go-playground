@@ -8,15 +8,17 @@ import (
 )
 
 func main() {
+	showNames()
+
 	_, age := returnNameAndAge()
 	// fmt.Println("I'm", name, "and I'm", age, "years")
 	// we can do like this to ignore first return value
 	fmt.Println("I'm", age, "years")
 
-	showIntroduction()
+	// showIntroduction()
 
 	for {
-		showMenu()
+		// showMenu()
 		command := readCommand()
 
 		// with if, else, else if
@@ -118,6 +120,17 @@ func initMonitoring() {
 }
 
 func showNames() {
+	// it's a Slice! it's an array, but we don't need to worry about length size
 	names := []string{"Anya", "Yor", "Loid"}
+
 	fmt.Println(names)
+
+	fmt.Println("The size of slice is:", len(names), "and has capacity:", cap(names))
+
+	names = append(names, "Bond")
+
+	fmt.Println(names)
+	// slice just get doubled in capacity!
+	fmt.Println("The size of slice is:", len(names), "and has capacity:", cap(names))
+	fmt.Println(reflect.TypeOf(names))
 }
