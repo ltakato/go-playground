@@ -1,10 +1,13 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"reflect"
+	"strings"
 	"time"
 )
 
@@ -112,7 +115,9 @@ func initMonitoring() {
 	// sites[2] = "https://www.caelum.com.br"
 
 	// slice
-	sites := []string{"https://random-status-code.herokuapp.com/", "https://www.alura.com.br", "https://www.caelum.com.br"}
+	// sites := []string{"https://random-status-code.herokuapp.com/", "https://www.alura.com.br", "https://www.caelum.com.br"}
+
+	sites := readSitesFromFile()
 
 	fmt.Println(sites)
 
@@ -133,7 +138,12 @@ func initMonitoring() {
 }
 
 func testSite(site string, index int) {
-	resp, _ := http.Get(site)
+	resp, err := http.Get(site)
+
+	if err != nil {
+		fmt.Println("Site get error:", err)
+	}
+
 	statusCode := resp.StatusCode
 
 	fmt.Println("Testing site", index, ":", site)
@@ -159,4 +169,43 @@ func showNames() {
 	// slice just get doubled in capacity!
 	fmt.Println("The size of slice is:", len(names), "and has capacity:", cap(names))
 	fmt.Println(reflect.TypeOf(names))
+}
+
+func readSitesFromFile() []string {
+	var sites []string
+
+	// returns pointer to file
+	file, err := os.Open("sites.txt")
+
+	// returns bytes of entire file
+	// file, err := os.ReadFile("sites.txt")
+
+	if err != nil {
+		fmt.Println("File read error:", err)
+	}
+
+	// when open as bytes then convert to string
+	// fmt.Println(string(file))
+
+	// open as buffer
+	reader := bufio.NewReader(file)
+
+	for {
+		line, err := reader.ReadString('\n')
+
+		line = strings.TrimSpace(line)
+
+		fmt.Println(line)
+
+		sites = append(sites, line)
+
+		if err == io.EOF {
+			break
+		}
+	}
+
+	// remember to close the file to release it on OS!
+	file.Close()
+
+	return sites
 }
