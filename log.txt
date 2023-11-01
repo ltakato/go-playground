@@ -1,0 +1,15 @@
+31/10/2023 23:00:55 - https://random-status-code.herokuapp.com/ - online: false
+31/10/2023 23:00:55 - https://www.alura.com.br - online: true
+31/10/2023 23:00:56 - https://www.caelum.com.br - online: true
+31/10/2023 23:01:02 - https://random-status-code.herokuapp.com/ - online: false
+31/10/2023 23:01:02 - https://www.alura.com.br - online: true
+31/10/2023 23:01:02 - https://www.caelum.com.br - online: true
+31/10/2023 23:01:08 - https://random-status-code.herokuapp.com/ - online: false
+31/10/2023 23:01:08 - https://www.alura.com.br - online: true
+31/10/2023 23:01:08 - https://www.caelum.com.br - online: true
+31/10/2023 23:01:14 - https://random-status-code.herokuapp.com/ - online: false
+31/10/2023 23:01:14 - https://www.alura.com.br - online: true
+31/10/2023 23:01:14 - https://www.caelum.com.br - online: true
+31/10/2023 23:01:20 - https://random-status-code.herokuapp.com/ - online: false
+31/10/2023 23:01:20 - https://www.alura.com.br - online: true
+31/10/2023 23:01:20 - https://www.caelum.com.br - online: true

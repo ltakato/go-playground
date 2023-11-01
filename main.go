@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"reflect"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -44,7 +45,7 @@ func main() {
 		case 1:
 			initMonitoring()
 		case 2:
-			fmt.Println("Showing logs...")
+			printLogs()
 		case 0:
 			fmt.Println("Exiting program...")
 			os.Exit(0)
@@ -150,8 +151,10 @@ func testSite(site string, index int) {
 
 	if statusCode == 200 {
 		fmt.Println("Site:", site, "was loaded successfully!")
+		registerLog(site, true)
 	} else {
 		fmt.Println("Site:", site, "has problems. Status code:", statusCode)
+		registerLog(site, false)
 	}
 }
 
@@ -208,4 +211,29 @@ func readSitesFromFile() []string {
 	file.Close()
 
 	return sites
+}
+
+func registerLog(site string, status bool) {
+	file, err := os.OpenFile("log.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+
+	if err != nil {
+		fmt.Println("Failed to open log file", err)
+	}
+
+	formattedTime := time.Now().Format("02/01/2006 15:04:05")
+	stringToWrite := formattedTime + " - " + site + " - online: " + strconv.FormatBool(status) + "\n"
+
+	file.WriteString(stringToWrite)
+
+	file.Close()
+}
+
+func printLogs() {
+	file, err := os.ReadFile("log.txt")
+
+	if err != nil {
+		fmt.Println("Failed to open log file", err)
+	}
+
+	fmt.Println(string(file))
 }
